@@ -1,10 +1,10 @@
 server:
   port: 8801
 dubbo:
-  scan:
-    base-packages: com.wilderness.producer.service
   protocol:
     name: dubbo
     port: 12345
   registry:
     address: zookeeper://127.0.0.1:2181
+  application:
+    name: producer-application
