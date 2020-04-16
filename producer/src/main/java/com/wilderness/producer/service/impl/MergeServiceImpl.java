@@ -1,7 +1,7 @@
 package com.wilderness.producer.service.impl;
 
 import com.wilderness.api.MergeService;
-import org.springframework.stereotype.Service;
+import org.apache.dubbo.config.annotation.Service;
 
 import java.util.ArrayList;
 import java.util.List;

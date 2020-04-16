@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@EnableDubbo(scanBasePackages = "com.wilderness.producer.service.impl")
+@EnableDubbo(scanBasePackages = "com.wilderness.producer.service")
 public class ProducerApplication {
 
     public static void main(String[] args) {

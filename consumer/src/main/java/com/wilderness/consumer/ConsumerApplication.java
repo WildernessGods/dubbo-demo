@@ -12,9 +12,9 @@ public class ConsumerApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(ConsumerApplication.class, args);
+        context.start();
 
-        final MergeServiceAction mergeServiceAction = (MergeServiceAction) context.getBean("mergeServiceAction");
-        System.out.println(mergeServiceAction.mergeResult("112222222222"));
+        final MergeServiceAction mergeServiceAction = context.getBean("mergeServiceAction", MergeServiceAction.class);
+        System.out.println(mergeServiceAction.mergeResult("313123123"));
     }
-
 }
