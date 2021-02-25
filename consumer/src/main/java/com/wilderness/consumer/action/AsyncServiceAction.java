@@ -4,9 +4,10 @@ import com.wilderness.api.AsyncService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.Method;
+import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * @author an_qiang
@@ -20,10 +21,22 @@ public class AsyncServiceAction {
     private AsyncService asyncService;
 
     public void sayHello(String s) {
-        try {
-            log.debug("sayHello" + asyncService.sayHello(s).get(5, TimeUnit.SECONDS));
-        } catch (Exception e) {
-            log.error(e.getLocalizedMessage());
-        }
+//        asyncService.sayHello(s).whenComplete((s1, throwable) -> {
+//            if (throwable != null) {
+//                throwable.printStackTrace();
+//            } else {
+//                log.debug("Response: " + s1);
+//            }
+//        });
+
+        asyncService.sayHello(s);
+        CompletableFuture<String> helloFuture = RpcContext.getContext().getCompletableFuture();
+        helloFuture.whenComplete((retValue, exception) -> {
+            if (exception == null) {
+                log.debug("Response2: " + retValue);
+            } else {
+                exception.printStackTrace();
+            }
+        });
     }
 }
