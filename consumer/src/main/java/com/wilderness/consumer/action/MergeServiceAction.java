@@ -1,7 +1,8 @@
 package com.wilderness.consumer.action;
 
 import com.wilderness.api.MergeService;
-import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.apache.dubbo.config.annotation.Method;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,7 +13,8 @@ import java.util.List;
 @Component
 public class MergeServiceAction {
 
-    @Reference
+    @DubboReference(interfaceClass = MergeService.class, timeout = 1000,
+            methods = {@Method(name = "mergeResult", timeout = 3000, retries = 1)})
     private MergeService mergeService;
 
     public List<String> mergeResult(String s) {
