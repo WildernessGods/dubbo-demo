@@ -1,5 +1,6 @@
 package com.wilderness.consumer.api;
 
+import com.wilderness.consumer.action.AsyncServiceAction;
 import com.wilderness.consumer.action.MergeServiceAction;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +18,13 @@ public class ApiController {
     @Resource
     private MergeServiceAction mergeServiceAction;
 
+    @Resource
+    private AsyncServiceAction asyncServiceAction;
+
     @GetMapping("/api")
     public void api(String s) {
 
-        log.debug(String.valueOf(mergeServiceAction.mergeResult(s)));
+//        log.debug(String.valueOf(mergeServiceAction.mergeResult(s)));
+        asyncServiceAction.sayHello(s);
     }
 }

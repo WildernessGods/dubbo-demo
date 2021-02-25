@@ -1,5 +1,5 @@
 server:
-  port: 8802
+  port: 8901
 dubbo:
   registry:
     address: zookeeper://127.0.0.1:2181
